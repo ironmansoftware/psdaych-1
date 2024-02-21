@@ -1,0 +1,1 @@
+﻿New-PSUVariable -Name "MySecret" -Vault "AzureKeyVault" -Type "System.String"

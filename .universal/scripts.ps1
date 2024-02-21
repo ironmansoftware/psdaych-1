@@ -1,0 +1,1 @@
+﻿New-PSUScript -Name "RegisterKeyVault.ps1" -Description "RegisterKeyVault.ps1" -Path "RegisterKeyVault.ps1" -InformationAction "SilentlyContinue"
