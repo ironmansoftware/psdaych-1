@@ -1,0 +1,1 @@
+. "$PSScriptRoot\..\RegisterKeyVault.ps1"
