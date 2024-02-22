@@ -5,3 +5,12 @@
 
     Connect-DbaInstance -Database $Builder.'Initial Catalog' -SqlInstance $Builder.'Data Source' -SqlCredential $Credential
 }
+
+class ServiceRequest {
+    [string]$Title
+    [string]$Description 
+    [int]$Status 
+    [string]$Requester
+    [string]$Manaager
+    [int]$Id
+}
