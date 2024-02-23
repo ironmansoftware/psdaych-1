@@ -4,4 +4,5 @@ New-PSUScript -Name "CreateServiceCatalogTables.ps1" -Description "CreateService
 New-PSUScript -Name "NewServiceRequest.ps1" -Description "NewServiceRequest.ps1" -Path "NewServiceRequest.ps1" -InformationAction "SilentlyContinue" 
 New-PSUScript -Name "GetServiceRequest.ps1" -Description "GetServiceRequest.ps1" -Path "GetServiceRequest.ps1" -InformationAction "SilentlyContinue" 
 New-PSUScript -Name "UpdateServiceRequest.ps1" -Description "UpdateServiceRequest.ps1 [-Id] <int> [-Status] <int> [-Description] <string> [<CommonParameters>]" -Path "UpdateServiceRequest.ps1" -InformationAction "SilentlyContinue" 
-New-PSUScript -Name "SendTeamsMessage.ps1" -Description "SendTeamsMessage.ps1" -Path "SendTeamsMessage.ps1" -InformationAction "SilentlyContinue"
+New-PSUScript -Name "SendTeamsMessage.ps1" -Description "SendTeamsMessage.ps1" -Path "SendTeamsMessage.ps1" -InformationAction "SilentlyContinue" 
+New-PSUScript -Name "SendEmail.ps1" -Description "SendEmail.ps1" -Path "SendEmail.ps1" -InformationAction "SilentlyContinue"
