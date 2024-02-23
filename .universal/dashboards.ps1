@@ -1,0 +1,1 @@
+﻿New-PSUApp -Name "Portal" -FilePath "dashboards/Portal/Portal.ps1" -BaseUrl "/portal" -Authenticated -AutoDeploy
