@@ -6,7 +6,6 @@
 )
 
 Import-Module "$Repository\Modules\ServiceCatalog\1.0.0\ServiceCatalog.psd1"
-
 $Connection = Connect-Database
 
 try 

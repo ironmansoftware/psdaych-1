@@ -9,12 +9,18 @@ Import-Module "$Repository\Modules\ServiceCatalog\1.0.0\ServiceCatalog.psd1"
 
 $Connection = Connect-Database
 
+<#
+0 - Requested
+1 - Approved
+2 - Denied
+3 - Canceled
+#>
+
 try 
 {
     $queryParameters = @{
         Id = $RequestId 
         Status = $Status 
-        Description = $Description
     }
 
     Invoke-DbaQuery -Query "UPDATE dbo.ServiceRequests SET Status = @Status, Description = @Description WHERE Id = @Id" -SqlInstance $Connection  -SqlParameter $queryParameters
