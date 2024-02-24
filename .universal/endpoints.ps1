@@ -1,11 +1,11 @@
-﻿New-PSUEndpoint -Url "/request/{id}/{status}" -Method @('GET') -Endpoint {
+﻿New-PSUEndpoint -Url "/request/:id" -Method @('POST') -Endpoint {
     param(
         [int]$Id, 
         [int]$Status
     )
 
     Invoke-PSUScript -Name "UpdateServiceRequest.ps1" -Parameters @{
-        Id     = $Id 
-        Status = $Status
+        RequestId = $Id 
+        Status    = $Status
     }
-} -Authentication
+}

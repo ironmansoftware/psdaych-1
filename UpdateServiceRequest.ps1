@@ -1,10 +1,8 @@
 ﻿param(
     [Parameter(Mandatory)]
-    [int]$Id, 
+    [int]$RequestId, 
     [Parameter(Mandatory)]
-    [int]$Status,
-    [Parameter(Mandatory)]
-    [string]$Description
+    [int]$Status
 )
 
 Import-Module "$Repository\Modules\ServiceCatalog\1.0.0\ServiceCatalog.psd1"
@@ -14,7 +12,7 @@ $Connection = Connect-Database
 try 
 {
     $queryParameters = @{
-        Id = $Id 
+        Id = $RequestId 
         Status = $Status 
         Description = $Description
     }
@@ -25,3 +23,11 @@ finally
 {
     $Connection | Disconnect-DbaInstance
 }
+
+$StatusName = "approved"
+if ($Status -eq 2)
+{
+    $StatusName = "denied"
+}
+
+Invoke-RestMethod -Method post -ContentType 'Application/Json' -Body "{`"text`":`"Service request $Id has been $StatusName.`"}" -Uri $Secret:TeamsWebHook
