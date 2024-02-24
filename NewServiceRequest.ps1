@@ -1,7 +1,8 @@
 ﻿param(
     [ValidateSet("Request Machine")]
     [string]$Type,
-    [string]$Size
+    [string]$Size,
+    [string]$User
 )
 
 Import-Module "$Repository\Modules\ServiceCatalog\1.0.0\ServiceCatalog.psd1"
@@ -13,7 +14,7 @@ try
     $queryParameters = @{
         Title = $Type
         Description = "Requesting a VM of size $size"
-        Requester = $UAJob.Identity.Name
+        Requester = $User
         Manager = "adam@ironmansoftware.onmicrosoft.com"
         Status = 0
     }
@@ -28,18 +29,18 @@ finally
 }
 
 $Message = @{
-    summary = "$($UAJob.Identity.Name) is request a virtual machine of size $size."
+    summary = "$User is request a virtual machine of size $size."
     "@type" = "MessageCard"
     "@context" = "http://schema.org/extensions"
     "themeColor" = "0076D7"
     "sections" = @(
         @{
-            "activityTitle" = "$($UAJob.Identity.Name) is request a virtual machine of size $size."
+            "activityTitle" = "$User is request a virtual machine of size $size."
             "activitySubtitle" = "Do you approve?"
             "facts" = @(
                 @{
                     "name" = "Requester"
-                    "value" = $UAJob.Identity.Name
+                    "value" = $User
                 }
                 @{
                     "name" = "Size"
