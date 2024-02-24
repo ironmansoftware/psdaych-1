@@ -16,6 +16,8 @@ $Connection = Connect-Database
 3 - Canceled
 #>
 
+Write-Host "Status is $Status"
+
 try 
 {
     $queryParameters = @{
@@ -23,7 +25,7 @@ try
         Status = $Status 
     }
 
-    Invoke-DbaQuery -Query "UPDATE dbo.ServiceRequests SET Status = @Status, Description = @Description WHERE Id = @Id" -SqlInstance $Connection  -SqlParameter $queryParameters
+    Invoke-DbaQuery -Query "UPDATE dbo.ServiceRequests SET Status = @Status WHERE Id = @Id" -SqlInstance $Connection  -SqlParameter $queryParameters | Out-Null
 }
 finally 
 {
