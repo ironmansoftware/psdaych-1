@@ -45,6 +45,27 @@ New-UDTable -Columns @(
 } -LoadingComponent {
     New-UDProgress -Label "Loading..."
 }
+
+New-UDButton -Color error -Icon (New-UDIcon -Icon Trash) -OnClick {
+    Import-Module "$Repository\Modules\ServiceCatalog\1.0.0\ServiceCatalog.psd1"
+    $Connection = Connect-Database
+
+    try 
+    {
+        $queryParameters = @{
+            Requester = $User
+        }
+
+        Invoke-DbaQuery -Query "DELETE FROM dbo.ServiceRequests WHERE Requester = @Requester" -SqlInstance $Connection  -SqlParameter $queryParameters
+    }
+    finally 
+    {
+        $Connection | Disconnect-DbaInstance
+    }
+
+    Sync-UDElement -Id 'grid'
+
+} -ShowLoading -Text 'Delete All'
 } -Icon @{
 		id = '462bb4cf-96e5-4bc0-b284-d10c237e25cd'
 		type = 'icon'
