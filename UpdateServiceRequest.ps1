@@ -38,4 +38,6 @@ if ($Status -eq 2)
     $StatusName = "denied"
 }
 
+# Provisioning of the machine would happen
+
 Invoke-RestMethod -Method post -ContentType 'Application/Json' -Body "{`"text`":`"Service request $Id has been $StatusName.`"}" -Uri $Secret:TeamsWebHook

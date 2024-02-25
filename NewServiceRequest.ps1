@@ -28,7 +28,7 @@ finally
 }
 
 $Message = @{
-    summary = "$User is request a virtual machine of size $size."
+    summary = "$User is requesting a virtual machine of size $size."
     "@type" = "MessageCard"
     "@context" = "http://schema.org/extensions"
     "themeColor" = "0076D7"
