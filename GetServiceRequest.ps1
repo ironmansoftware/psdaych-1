@@ -8,9 +8,9 @@ try
         Requester = $UAJob.Identity.Name
     }
 
-    Invoke-DbaQuery -Query "SELECT * FROM dbo.ServiceRequests WHERE Requester = @Requester" -SqlInstance $Connection  -SqlParameter $queryParameters
+    Invoke-DbaQuery -Query "SELECT * FROM dbo.ServiceRequests WHERE Requester = @Requester" -SqlInstance $Connection  -SqlParameter $queryParameters -As PSObject
 }
 finally 
 {
-    $Connection | Disconnect-DbaInstance
+    $Connection | Disconnect-DbaInstance | Out-Null
 }

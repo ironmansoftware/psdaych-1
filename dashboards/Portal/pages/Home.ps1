@@ -10,10 +10,12 @@ New-UDLayout -Columns 4 -Content {
     } -OnClick {
         Invoke-UDRedirect "/request-virtual-machine"
     }
-    New-UDCard -Title "View Cost Analysis" -Content {
-        New-UDTypography "View the latest cost analysis report."
-    } -OnClick {
-        Invoke-UDRedirect "/cost-analysis"
+    Protect-UDSection -Role "Administrator" -Content {
+        New-UDCard -Title "View Cost Analysis" -Content {
+            New-UDTypography "View the latest cost analysis report."
+        } -OnClick {
+            Invoke-UDRedirect "/cost-analysis"
+        }
     }
 }
 } -Icon @{
