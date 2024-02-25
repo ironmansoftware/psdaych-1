@@ -1,0 +1,1 @@
+﻿New-PSUSchedule -Cron "0 0 * * *" -Script "ProvisionMachines.ps1" -Name "Provision Machines"
