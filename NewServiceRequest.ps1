@@ -1,7 +1,8 @@
 ﻿param(
     [ValidateSet("Request Machine")]
-    [string]$Type,
-    [string]$Size,
+    [string]$Type = "Request Machine",
+    [ValidateSet("Small", "Medium", "Large")]
+    [string]$Size = "Small",
     [string]$User
 )
 
@@ -18,13 +19,13 @@ try
         Status = 0
     }
 
-    Invoke-DbaQuery -Query "INSERT INTO dbo.ServiceRequests (Title, Description, Requester, Status, Manager) VALUES (@Title, @Description, @Requester, @Status, @Manager)" -SqlInstance $Connection  -SqlParameter $queryParameters
+    Invoke-DbaQuery -Query "INSERT INTO dbo.ServiceRequests (Title, Description, Requester, Status, Manager) VALUES (@Title, @Description, @Requester, @Status, @Manager)" -SqlInstance $Connection  -SqlParameter $queryParameters | Out-Null
 
     $RequestId = Invoke-DbaQuery -Query "SELECT Id FROM dbo.ServiceRequests WHERE Requester = @Requester AND Status = 0" -SqlInstance $Connection  -SqlParameter $queryParameters | Select-Object -First 1
 }
 finally 
 {
-    $Connection | Disconnect-DbaInstance
+    $Connection | Disconnect-DbaInstance | Out-Null
 }
 
 $Message = @{
