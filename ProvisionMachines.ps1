@@ -13,8 +13,11 @@ try
             Id = $_.Id
         }
 
-
         Invoke-DbaQuery -Query "UPDATE dbo.ServiceRequests SET Status = 3 WHERE ID = @Id" -SqlInstance $Connection  -SqlParameter $queryParameters 
+
+        $Message = "[Request $($_.Id)] Provisioned a machine for $($_.Requester)"
+
+        Invoke-RestMethod -Method post -ContentType 'Application/Json' -Body "{`"text`":`"$Message`"}" -Uri $Secret:TeamsWebHook
     }
 }
 finally 

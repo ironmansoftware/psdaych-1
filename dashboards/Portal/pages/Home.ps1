@@ -32,7 +32,7 @@ New-UDStack -FullWidth -Direction column -Children {
     New-UDTextbox -Label Search -OnEnter {
         $Page:Search = $EventData
         Sync-UDElement -Id 'results'
-    } -FullWidth
+    } -FullWidth -Icon (New-UDIcon -Icon 'search')
 
     New-UDDivider
 
